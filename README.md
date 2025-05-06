@@ -1,3 +1,4 @@
+![](Preview.png)
 A desktop application for securely editing text files locally. This application encrypts and decrypts files using strong AES-GCM encryption derived from a user-provided key word (password).
 
 The user interface is built with standard web technologies (HTML, CSS, JavaScript) and rendered in a native desktop window using **PyWebView**. A lightweight **Flask** server runs locally in the background to handle file operations and cryptographic tasks powered by the Python **cryptography** library.
