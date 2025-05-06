@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Text Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ldloader@1.0.0/dist/ldld.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title-area">
+                <h1>Secure Editor</h1>
+                <button id="btn-settings" class="btn-icon" title="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+            <div class="file-controls">
+                <button id="btn-open" class="btn">Open File</button>
+                <span id="filename-display">No file selected</span><span id="dirty-indicator" class="dirty-indicator"></span>
+                <button id="btn-new" class="btn btn-secondary">New File</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="toolbar">
+                <div class="key-section">
+                    <label for="key-input">Secret Key Word:</label>
+                    <input type="password" id="key-input" placeholder="Enter your key word...">
+                </div>
+                 <button id="btn-clear" class="btn btn-secondary btn-small" title="Clear Text Area">
+                     <i class="fas fa-eraser"></i> Clear
+                 </button>
+            </div>
+
+            <div class="editor-area">
+                 <textarea id="text-area" placeholder="Load an encrypted file or start typing..."></textarea>
+            </div>
+        </main>
+
+        <footer>
+            <div class="stats-area">
+                <span class="stat-item">Lines: <span id="line-count">0</span></span>
+                <span class="stat-item">Words: <span id="word-count">0</span></span>
+                <span class="stat-item">Chars: <span id="char-count">0</span></span>
+            </div>
+            <div id="status-bar">Ready.</div>
+            <div class="action-buttons">
+                 <button id="btn-load" class="btn btn-accent">
+                     <span class="btn-text">Load / Decrypt</span>
+                     <div class="ldld ldld-spin-fast" id="load-spinner" style="display: none;"></div>
+                 </button>
+                 <button id="btn-save" class="btn">
+                    <span class="btn-text">Save / Encrypt</span>
+                    <div class="ldld ldld-spin-fast" id="save-spinner" style="display: none;"></div>
+                 </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Settings Modal Structure -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-settings-modal">×</span>
+            <h2>Settings</h2>
+            <!-- REINSTATED Toggle DevTools Button -->
+            <div class="setting-item">
+                 <label>Developer Tools:</label>
+                 <button id="btn-toggle-devtools" class="btn btn-small">Toggle DevTools</button>
+            </div>
+             <div class="setting-item">
+                 <label for="font-size-input">Font Size:</label>
+                 <input type="number" id="font-size-input" min="8" max="32" step="1" value="10"> px
+            </div>
+            <!-- Add more settings here if needed -->
+            <!-- Removed DevTools Note -->
+        </div>
+    </div>
+
+    <!-- Load spinner library first if re-enabling -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/ldloader@1.0.0/dist/ldld.min.js"></script> -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
