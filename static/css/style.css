@@ -1,0 +1,374 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --bg-primary: #1a1a1d;
+    --bg-secondary: #2c2c34;
+    --bg-tertiary: #4a4a58;
+    --text-primary: #e8e8e8;
+    --text-secondary: #b0b0b0;
+    --accent-primary: #6f42c1;
+    --accent-secondary: #8a63d2;
+    --error-color: #e53935;
+    --success-color: #4caf50;
+    --border-radius: 6px;
+    --transition-speed: 0.2s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px; /* Reduced padding */
+}
+
+.container {
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px F0px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 850px; /* Slightly wider */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 85vh; /* Slightly more height */
+}
+
+header {
+    background-color: var(--bg-tertiary);
+    padding: 12px 20px; /* Adjusted padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px; /* Gap between sections */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Group title and settings icon */
+.title-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+header h1 {
+    font-size: 1.3em; /* Slightly smaller */
+    font-weight: 700;
+    margin: 0; /* Removed margin */
+}
+
+.file-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#filename-display {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    margin: 0 5px 0 10px; /* Adjust margin */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+/* Style for unsaved indicator */
+.dirty-indicator {
+    color: var(--accent-secondary);
+    font-weight: bold;
+    margin-left: -5px; /* Pull closer to filename */
+    display: inline-block; /* Needed for margin */
+}
+
+
+main {
+    padding: 20px 20px 10px 20px; /* Adjust padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* New toolbar for key and clear button */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.key-section {
+    /* Remove margin-bottom as it's handled by toolbar */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1; /* Allow key input to grow */
+    min-width: 250px; /* Prevent excessive shrinking */
+}
+
+.key-section label {
+    font-weight: 500;
+    white-space: nowrap; /* Prevent label wrapping */
+}
+
+input[type="password"] {
+    flex-grow: 1;
+    padding: 8px 10px; /* Smaller padding */
+    background-color: var(--bg-primary);
+    border: 1px solid var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9em; /* Smaller font */
+    outline: none;
+    transition: border-color var(--transition-speed) ease;
+    min-width: 150px;
+}
+
+input[type="password"]:focus {
+    border-color: var(--accent-primary);
+}
+
+.editor-area {
+    flex-grow: 1;
+    display: flex;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 350px; /* Increased min-height */
+    padding: 15px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 10pt; /* Default font size - match input below */
+    line-height: 1.5;
+    resize: vertical;
+    outline: none;
+    transition: border-color var(--transition-speed) ease, font-size 0.1s ease; /* Add font-size transition */
+}
+
+textarea:focus {
+    border-color: var(--accent-primary);
+}
+
+footer {
+    background-color: var(--bg-tertiary);
+    padding: 10px 20px; /* Adjust padding */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px; /* Gap between sections */
+}
+
+/* New Stats Area */
+.stats-area {
+    display: flex;
+    gap: 15px;
+    color: var(--text-secondary);
+    font-size: 0.85em;
+}
+.stat-item span {
+    color: var(--text-primary); /* Make numbers stand out slightly */
+    font-weight: 500;
+}
+
+
+#status-bar {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    transition: color var(--transition-speed) ease;
+    flex-grow: 1; /* Allow status bar to take space */
+    text-align: center; /* Center status text */
+    min-width: 100px;
+}
+
+#status-bar.error { color: var(--error-color); }
+#status-bar.success { color: var(--success-color); }
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Button Styling */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px; /* Adjust padding */
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+    outline: none;
+    position: relative;
+    white-space: nowrap; /* Prevent button text wrapping */
+}
+
+.btn:hover {
+    background-color: var(--accent-secondary);
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0px);
+    background-color: var(--accent-primary);
+}
+
+.btn.btn-accent { background-color: var(--accent-primary); color: white; }
+.btn.btn-accent:hover { background-color: var(--accent-secondary); }
+.btn.btn-secondary { background-color: var(--bg-tertiary); border: 1px solid var(--accent-primary); }
+.btn.btn-secondary:hover { background-color: rgba(111, 66, 193, 0.2); transform: translateY(-1px); }
+
+/* Smaller button variant */
+.btn.btn-small {
+    padding: 6px 12px;
+    font-size: 0.85em;
+}
+/* Icon button variant (for settings) */
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.2em;
+    padding: 5px;
+    cursor: pointer;
+    transition: color var(--transition-speed) ease;
+    border-radius: 50%; /* Make it round */
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn-icon:hover {
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+/* Icon styling */
+.btn i {
+    margin-right: 6px; /* Space between icon and text */
+}
+.btn-small i {
+    margin-right: 4px;
+}
+.btn-icon i {
+    margin-right: 0; /* No margin for icon-only button */
+}
+
+
+/* Spinner inside button */
+.btn .ldld { font-size: 1em; margin-left: 8px; color: inherit; --ldld-color: currentColor; }
+.btn.loading .btn-text { opacity: 0; }
+.btn.loading .ldld { display: block !important; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+
+
+/* Settings Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    backdrop-filter: blur(3px); /* Optional blur effect */
+    animation: fadeIn 0.3s ease-out; /* Fade in animation */
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 25px 30px;
+    border: 1px solid var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 500px; /* Maximum width */
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.close-button {
+    color: var(--text-secondary);
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.8em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.modal h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+.setting-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.setting-item label {
+    font-weight: 500;
+    margin-right: 15px;
+}
+/* Font size input styling */
+#font-size-input {
+    width: 60px; /* Specific width */
+    padding: 5px 8px;
+    background-color: var(--bg-primary);
+    border: 1px solid var(--bg-tertiary);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.9em;
+}
+
+/* Modal Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
